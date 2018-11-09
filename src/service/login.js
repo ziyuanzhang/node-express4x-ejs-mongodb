@@ -5,7 +5,8 @@ module.exports =(req, callback)=>{
         if(err){
             console.log("mongodb:",err);
             return;
-        }       
+        }   
+            
         callback();
         db.close();        
       });
