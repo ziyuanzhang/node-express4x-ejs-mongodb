@@ -1,12 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>home</title>
-</head>
-<body>
-    home
-</body>
+    <%- include('base/head'); %>
+  </head>
+  <body>
+    <div class="main">
+      <%- include('base/nav'); %>
+      <div class="body">
+          <%- include('base/leftNav'); %>
+          <div class="rightMain">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">搜索</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-1"><span class="">名称</span>  </div>
+                    <div class="col-sm-6">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入名称">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">搜索</button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  </div><!-- /.row -->
+                </div>
+              </div>
+              <div class="panel panel-default">
+            
+                <!-- Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <td>编号</td>
+                      <td>名称</td>
+                      <td>图标</td>
+                      <td>价格</td>
+                      <td>邮费</td>
+                      <td>操作</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <% if(list.length>0){ %>
+                            <% for(var i=0;i<list.length;i++){ %>
+                              <tr>
+                                  <td><%=list[i].id%></td>
+                                  <td><%=list[i].name%></td>
+                                  <td><%=list[i].pic%></td>
+                                  <td><%=list[i].price%></td>
+                                  <td><%=list[i].fee%></td>
+                                  <td>
+                                      <button class="btn btn-default" type="submit" data-id="productList[i].id">修改</button>
+                                      <button class="btn btn-default" type="submit" data-id="productList[i].id">删除</button>
+                                  </td>
+                              </tr>
+                              <% } %>
+                        <% }else{ %>
+                      <tr>
+                          <td colspan="6"><%= list %></td>
+                      </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+      </div>
+    </div>
+  </body>
 </html>
