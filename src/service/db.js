@@ -4,7 +4,23 @@ const dbUrl =
 const dbName = 'expresscommoditymanagement';
 const session = require('express-session');
 module.exports = {
-    add:{},
+    add:(collectionName,json, callback)=>{
+        mongodb.MongoClient.connect(dbUrl, function(err, client) {
+            if(err) throw err;
+            let db = client.db('expresscommoditymanagement')
+            let product = db.collection(collectionName);
+            product.insert(json, function(err, result) {
+                if(err) throw err;
+
+
+                callback(result);
+
+                client.close(function (err) {
+                    if (err) throw err;
+                });
+            })
+        })
+    },
     delete:{},
     modify:{},
     find: ( collectionName,json, callback) => {

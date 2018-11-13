@@ -6,7 +6,23 @@
 .leftNav{
     width: 200px;
 }
+.leftNav .nav-btn{
+    color: #000;
+}
+.leftNav .nav-btn-active{
+    color: blue;
+}
+.leftNav .nav-btn:hover{
+    color: blue;
+}
+
 .rightMain{
     flex: 1;
     margin-left: 20px;
+}
+.addproduct form>div{
+  margin: 10px 0px;
+}
+.home .img{
+    max-width: 50px;
 }

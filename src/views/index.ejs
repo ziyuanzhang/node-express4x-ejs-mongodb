@@ -12,7 +12,7 @@
       <%- include('base/nav'); %>
       <div class="body">
           <%- include('base/leftNav'); %>
-          <div class="rightMain">
+          <div class="rightMain home">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">搜索</h3>
@@ -49,14 +49,14 @@
                       <% if(list.length>0){ %>
                             <% for(var i=0;i<list.length;i++){ %>
                               <tr>
-                                  <td><%=list[i].id%></td>
+                                  <td><%= i+1%></td>
                                   <td><%=list[i].name%></td>
-                                  <td><%=list[i].pic%></td>
+                                  <td><img class="img" src="<%=list[i].pic.replace('src','')%>"></td>
                                   <td><%=list[i].price%></td>
                                   <td><%=list[i].fee%></td>
                                   <td>
-                                      <button class="btn btn-default" type="submit" data-id="productList[i].id">修改</button>
-                                      <button class="btn btn-default" type="submit" data-id="productList[i].id">删除</button>
+                                      <button class="btn btn-default modify" type="submit" data-id="<%=list[i].id%>">修改</button>
+                                      <button class="btn btn-default delete" type="submit" data-id="<%=list[i].id%>">删除</button>
                                   </td>
                               </tr>
                               <% } %>
@@ -71,5 +71,13 @@
             </div>
       </div>
     </div>
+    <script>
+      $(".table").on("click",".modify",function(){
+
+      })
+      $(".table").on("click",".delete",function(){
+        $.post()
+      })
+    </script>
   </body>
 </html>

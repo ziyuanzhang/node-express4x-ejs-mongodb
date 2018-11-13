@@ -22,8 +22,10 @@ module.exports=(app)=>{
     app.get("/",controller.index);
     app.get("/login",controllerLogin.login);
     app.get("/signout",controllerLogin.signout);
-    
-    app.post("/loginAPI",controllerLogin.loginAPI)
+    app.post("/loginAPI",controllerLogin.loginAPI);
+
+    app.get("/addproduct",controller.addproduct);
+    app.post("/addproductAPI",controller.addproductAPI);
 
   
 }
