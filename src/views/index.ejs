@@ -99,14 +99,14 @@
               let node="";
               for(let i=0;i<res.length;i++){
                 node+=`<tr>
-                           <td>$(i+1)</td>
-                           <td>$(res[i].name)</td>
-                           <td><img src="$(res[i].pic.replace('src',''))"></td>
-                           <td>$(res[i].price)</td>
-                           <td>$(res[i].fee)</td>
+                           <td>${i+1}</td>
+                           <td>${res[i].name}</td>
+                           <td><img class="img" src="${res[i].pic.replace('src','')}"></td>
+                           <td>${res[i].price}</td>
+                           <td>${res[i].fee}</td>
                            <td>
-                               <a class="btn btn-default modify" href="/modifyproduct?id=$(res[i].id)" role="button">修改</a>
-                               <button class="btn btn-default delete" type="submit" data-id="$(res[i].id)">删除</button>
+                               <a class="btn btn-default modify" href="/modifyproduct?id=${res[i].id}" role="button">修改</a>
+                               <button class="btn btn-default delete" type="submit" data-id="${res[i].id}">删除</button>
                             </td>
                         </tr>
                      `
