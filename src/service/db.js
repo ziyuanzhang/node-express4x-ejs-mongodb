@@ -21,8 +21,40 @@ module.exports = {
             })
         })
     },
-    delete:{},
-    modify:{},
+    delete:(collectionName,json, callback)=>{
+        mongodb.MongoClient.connect(dbUrl, function(err, client) {
+            if(err) throw err;
+            let db = client.db('expresscommoditymanagement')
+            let product = db.collection(collectionName);
+            product.remove(json, function(err, result) {
+                if(err) throw err;
+
+
+                callback(result);
+
+                client.close(function (err) {
+                    if (err) throw err;
+                });
+            })
+        })
+    },
+    modify:(collectionName,id,json, callback)=>{
+        mongodb.MongoClient.connect(dbUrl, function(err, client) {
+            if(err) throw err;
+            let db = client.db('expresscommoditymanagement')
+            let product = db.collection(collectionName);
+            product.update(id,json, function(err, result) {
+                if(err) throw err;
+
+
+                callback(result);
+
+                client.close(function (err) {
+                    if (err) throw err;
+                });
+            })
+        })
+    },
     find: ( collectionName,json, callback) => {
         mongodb.MongoClient.connect(
             dbUrl,

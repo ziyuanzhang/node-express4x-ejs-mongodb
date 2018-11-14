@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>添加商品</title>
+    <title>修改商品</title>
     <%- include('base/head'); %>
 </head>
 
@@ -14,32 +14,39 @@
         <%- include('base/nav'); %>
         <div class="body">
             <%- include('base/leftNav'); %>
-            <div class="rightMain addproduct">
+            <div class="rightMain modifyproduct">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">添加商品</h3>
+                        <h3 class="panel-title">修改商品</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="addproductAPI" method="POST" enctype="multipart/form-data">
+                        <form action="modifyproductApi" method="post" enctype="multipart/form-data">
+                            <input type="text" class="hidden"  name="id" value="<%=productdetails.id%>">
                             <div class="row">
                                 <div class="col-sm-2"><span class="title">商品名称：</span></div>
-                                <div class="col-sm-10"><input type="text" class="form-control " placeholder="Text input" name="name"></div> 
+                                <div class="col-sm-10"><input type="text" class="form-control " placeholder="Text input" name="name" value="<%=productdetails.name%>"></div> 
                             </div>
                             <div class="row">
                                 <div class="col-sm-2"><span class="title">商品图片：</span></div>
-                                <div class="col-sm-10"><input type="file" class="form-control " placeholder="Text input" name="img" ></div>
+                                <div class="col-sm-10"><input type="file" class="form-control " placeholder="Text input" name="img" >
+                                    <% if(productdetails.pic){ %>
+                                        <img src="<%=productdetails.pic.replace('src','')%>">
+                                        <% } %>
+                                </div>
+                                
+
                             </div>
                             <div class="row">
                                 <div class="col-sm-2"><span class="title">商品价格：</span></div>
-                                <div class="col-sm-10"><input type="text" class="form-control " placeholder="Text input" name="price"></div>
+                                <div class="col-sm-10"><input type="text" class="form-control " placeholder="Text input" name="price" value="<%=productdetails.price%>"></div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-2"><span class="title">商品邮费：</span></div>
-                                <div class="col-sm-10"><input type="text" class="form-control " placeholder="Text input" name="fee"></div>
+                                <div class="col-sm-10"><input type="text" class="form-control " placeholder="Text input" name="fee" value="<%=productdetails.fee%>"></div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-2"><span class="title">商品描述：</span></div>
-                                <div class="col-sm-10"><textarea class="form-control col-sm-11" rows="3" name="description"></textarea></div>
+                                <div class="col-sm-10"><textarea class="form-control col-sm-11" rows="3" name="description"><%=productdetails.description%></textarea></div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-2"></div>

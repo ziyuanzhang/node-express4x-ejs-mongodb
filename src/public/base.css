@@ -24,5 +24,14 @@
   margin: 10px 0px;
 }
 .home .img{
-    max-width: 50px;
+    max-width: 70px;
+    max-height: 70px;
 }
+.modifyproduct form>div{
+    margin: 10px 0px;
+  }
+.modifyproduct form img{
+    margin-top: 10px;
+    max-width: 200px;
+    max-height: 200px; 
+  }

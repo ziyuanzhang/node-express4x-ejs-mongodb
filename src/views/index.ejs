@@ -22,9 +22,9 @@
                     <div class="col-sm-1"><span class="">名称</span>  </div>
                     <div class="col-sm-6">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="请输入名称">
+                        <input type="text" class="form-control seachInput" placeholder="请输入名称">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">搜索</button>
+                          <button class="btn btn-default seach" type="button">搜索</button>
                         </span>
                       </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
@@ -47,7 +47,7 @@
                   </thead>
                   <tbody>
                       <% if(list.length>0){ %>
-                            <% for(var i=0;i<list.length;i++){ %>
+                            <%for (var i=0;i<list.length;i++){%>
                               <tr>
                                   <td><%= i+1%></td>
                                   <td><%=list[i].name%></td>
@@ -55,7 +55,7 @@
                                   <td><%=list[i].price%></td>
                                   <td><%=list[i].fee%></td>
                                   <td>
-                                      <button class="btn btn-default modify" type="submit" data-id="<%=list[i].id%>">修改</button>
+                                      <a class="btn btn-default modify" href="/modifyproduct?id=<%=list[i].id%>" role="button">修改</a>
                                       <button class="btn btn-default delete" type="submit" data-id="<%=list[i].id%>">删除</button>
                                   </td>
                               </tr>
@@ -72,12 +72,49 @@
       </div>
     </div>
     <script>
-      $(".table").on("click",".modify",function(){
+      $(".table").on("click",".delete",function(){
+        $(this).addClass("disabled");
+      let id = $(this).attr("data-id");
+      let deleteNode =$(this).parents("tr");
+      let imgsrc= deleteNode.find("img").attr("src")
+      let data ={"id":id,"imgsrc":imgsrc} 
+      $.ajax({
+          url:"deleteproductApi",
+          type:'DELETE',
+          data:data,
+          success:function(data){
+            console.log("delete成功：",data);
+            deleteNode.remove();
+          }
+        })
 
       })
-      $(".table").on("click",".delete",function(){
-        $.post()
+      $('.seach').click(function(){
+        let that= $(this);
+        that.addClass("disabled");
+        let val = $(".seachInput").val();
+        $.post('/searchproductAPI',{'name':val},function(res){
+              console.log(res);
+              that.removeClass("disabled");
+              let node="";
+              for(let i=0;i<res.length;i++){
+                node+=`<tr>
+                           <td>$(i+1)</td>
+                           <td>$(res[i].name)</td>
+                           <td><img src="$(res[i].pic.replace('src',''))"></td>
+                           <td>$(res[i].price)</td>
+                           <td>$(res[i].fee)</td>
+                           <td>
+                               <a class="btn btn-default modify" href="/modifyproduct?id=$(res[i].id)" role="button">修改</a>
+                               <button class="btn btn-default delete" type="submit" data-id="$(res[i].id)">删除</button>
+                            </td>
+                        </tr>
+                     `
+              }
+              $("table tbody").html(node);
+        })
       })
+     
     </script>
   </body>
 </html>

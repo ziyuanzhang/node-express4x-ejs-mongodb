@@ -13,11 +13,8 @@ module.exports=(app)=>{
               next();
             }else{
                 res.redirect('/login');
-            }
-    
-        }
-
-     
+            }    
+        }     
     });
     app.get("/",controller.index);
     app.get("/login",controllerLogin.login);
@@ -26,6 +23,10 @@ module.exports=(app)=>{
 
     app.get("/addproduct",controller.addproduct);
     app.post("/addproductAPI",controller.addproductAPI);
+    app.delete("/deleteproductApi",controller.deleteproductApi);
+    app.get("/modifyproduct",controller.modifyproduct);
+    app.post("/modifyproductApi",controller.modifyproductApi);
+    app.post("/searchproductAPI",controller.searchproductAPI)
 
   
 }

@@ -1,5 +1,4 @@
 var fs = require('fs');
-
 exports.createFolder = function (folder) {
     try {
         fs.accessSync(folder);      
@@ -10,4 +9,12 @@ exports.createFolder = function (folder) {
         return folder
     }
     
+},
+exports.deleteFile= function(fileName){
+    try {
+        fs.unlink(fileName)
+    } catch (e) {
+       console.log("删除图片失败！")
+    }
+ 
 }
