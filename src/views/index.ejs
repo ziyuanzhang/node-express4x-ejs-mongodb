@@ -92,7 +92,7 @@
       $('.seach').click(function(){
         let that= $(this);
         that.addClass("disabled");
-        let val = $(".seachInput").val();
+        let val = $(".seachInput").val().trim();
         $.post('/searchproductAPI',{'name':val},function(res){
               console.log(res);
               that.removeClass("disabled");
